@@ -14,7 +14,7 @@ public class Solution {
    //String s=???; Complete this line below
 
    //Write your code here
-    String s = n.toString();
+   String s = String.valueOf(n);
 
 
 
