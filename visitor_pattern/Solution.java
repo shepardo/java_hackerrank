@@ -108,13 +108,13 @@ class ProductOfRedNodesVisitor extends TreeVis {
     }
 
     public void visitNode(TreeNode node) {
-        if (node.getColor() == RED) {
+        if (node.getColor() == Color.RED) {
             product *= node.getValue();
         }
     }
 
     public void visitLeaf(TreeLeaf leaf) {
-        if (leaf.getColor() == RED) {
+        if (leaf.getColor() == Color.RED) {
           product *= leaf.getValue();
         }
     }
@@ -137,7 +137,7 @@ class FancyVisitor extends TreeVis {
     }
 
     public void visitLeaf(TreeLeaf leaf) {
-    	if (leaf.getColor() == GREEN) {
+    	if (leaf.getColor() == Color.GREEN) {
             sum_green_leafs += leaf.getValue();
         }
     }
@@ -158,11 +158,11 @@ public class Solution {
     */
     public static Tree solve() {
         //read the tree from STDIN and return its root as a return value of this function
-        private ArrayList<Integer> values = new ArrayList<>();
-        private ArrayList<Color> colors = new ArrayList<>();
-        private int[][] relantionships = null;
-        private boolean[] has_children = null;
-        private Tree[] nodes = null;
+        ArrayList<Integer> values = new ArrayList<>();
+        ArrayList<Color> colors = new ArrayList<>();
+        int[][] relationships = null;
+        boolean[] has_children = null;
+        Tree[] nodes = null;
         Scanner scan = new Scanner(System.in);
         int total_nodes = scan.nextInt();
         int i = total_nodes;
@@ -176,7 +176,7 @@ public class Solution {
             i--;
         }
         
-        relationships = new int[total_nodes - 1];
+        relationships = new int[total_nodes - 1][2];
         i = total_nodes - 1;
         while (i > 0) {
             int parent = scan.nextInt();
@@ -209,13 +209,13 @@ public class Solution {
             if (nodes[child] == null) {
                 if (has_children[child]) {
                     nodes[child] = new TreeNode(
-                        values.get(childr), colors.get(child), parent.getDepth() + 1);
+                        values.get(child), colors.get(child), nodes[parent].getDepth() + 1);
                 } else {
                     nodes[child] = new TreeLeaf(
-                        values.get(childr), colors.get(child), parent.getDepth() + 1);
+                        values.get(child), colors.get(child), nodes[parent].getDepth() + 1);
                 }
             }
-            nodes[parent].addChild(nodes[child]);
+            ((TreeNode)nodes[parent]).addChild(nodes[child]);
             i++;
         }
         return nodes[0];
