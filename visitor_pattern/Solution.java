@@ -159,19 +159,66 @@ public class Solution {
     public static Tree solve() {
         //read the tree from STDIN and return its root as a return value of this function
         private ArrayList<Integer> values = new ArrayList<>();
-        private ArrayList<Integer> colors = new ArrayList<>();
-        Scanner scanner = new Scanner(System.in);
-         int total_nodes = scan.nextInt();
-         int i = total_nodes;
-         while (i > 0) {
-             values.add(scan.nextInt());
-             i--;
-         }
-         i = total_nodes;
-         while (i > 0) {
-             colors.add(scan.nextInt());
-             i--;
-         }
+        private ArrayList<Color> colors = new ArrayList<>();
+        private int[][] relantionships = null;
+        private boolean[] has_children = null;
+        private Tree[] nodes = null;
+        Scanner scan = new Scanner(System.in);
+        int total_nodes = scan.nextInt();
+        int i = total_nodes;
+        while (i > 0) {
+            values.add(scan.nextInt());
+            i--;
+        }
+        i = total_nodes;
+        while (i > 0) {
+            colors.add(scan.nextInt() == 0 ? Color.RED : Color.GREEN);
+            i--;
+        }
+        
+        relationships = new int[total_nodes - 1];
+        i = total_nodes - 1;
+        while (i > 0) {
+            int parent = scan.nextInt();
+            int child = scan.nextInt();
+            int j = total_nodes - i;
+            relationships[j] = new int[2];
+            relationships[j][0] = parent;
+            relationships[j][1] = child;
+            i--;
+        }
+        has_children = new boolean[total_nodes];
+        for (int k = 0; k < has_children.length; k++) {
+            has_children[k] = false;
+            i = 0;
+            while (i < relationships.length) {
+                if (relationships[i][0] == k) {
+                    has_children[i] = true;
+                    break;
+                }
+                i++;
+            }
+        }
+
+        nodes = new Tree[total_nodes];
+        nodes[0] = new TreeNode(values.get(0), colors.get(0), 0);
+        i = 0;
+        while (i < relationships.length) {
+            int parent = relationships[i][0];
+            int child = relationships[i][1];
+            if (nodes[child] == null) {
+                if (has_children[child]) {
+                    nodes[child] = new TreeNode(
+                        values.get(childr), colors.get(child), parent.getDepth() + 1);
+                } else {
+                    nodes[child] = new TreeLeaf(
+                        values.get(childr), colors.get(child), parent.getDepth() + 1);
+                }
+            }
+            nodes[parent].addChild(nodes[child]);
+            i++;
+        }
+        return nodes[0];
     }
 
 
