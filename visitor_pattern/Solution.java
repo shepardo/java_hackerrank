@@ -1,3 +1,4 @@
+// https://www.hackerrank.com/challenges/java-vistor-pattern/problem
 import java.util.ArrayList;
 import java.io.*;
 import java.util.*;
@@ -126,7 +127,7 @@ class FancyVisitor extends TreeVis {
     int sum_green_leafs = 0;
     public int getResult() {
       	//implement this
-        return 0;
+        return Math.abs(sum_nodes_even - sum_green_leafs);
     }
 
     public void visitNode(TreeNode node) {
@@ -181,8 +182,8 @@ public class Solution {
         while (i > 0) {
             int parent = scan.nextInt();
             int child = scan.nextInt();
-            int j = total_nodes - i;
-            relationships[j] = new int[2];
+            int j = total_nodes - i - 1;
+            //relationships[j] = new int[2];
             relationships[j][0] = parent;
             relationships[j][1] = child;
             i--;
@@ -204,8 +205,8 @@ public class Solution {
         nodes[0] = new TreeNode(values.get(0), colors.get(0), 0);
         i = 0;
         while (i < relationships.length) {
-            int parent = relationships[i][0];
-            int child = relationships[i][1];
+            int parent = relationships[i][0] - 1;
+            int child = relationships[i][1] - 1;
             if (nodes[child] == null) {
                 if (has_children[child]) {
                     nodes[child] = new TreeNode(
