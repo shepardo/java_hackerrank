@@ -10,8 +10,8 @@ import java.util.regex.*;
 public class Solution {
 
     private static int getHourGlassSum(int x, int y, int[][] arr) {
-        if (x + 2 >= arr[0].length) return -1;
-        if (y + 2 >= arr.length) return -1;
+        if (x + 2 >= arr[0].length) return Integer.MIN_VALUE;
+        if (y + 2 >= arr.length) return Integer.MIN_VALUE;
         return 
             arr[y][x] + arr[y][x + 1] + arr[y][x + 2] +
             arr[y + 1][x + 1] +
@@ -19,7 +19,7 @@ public class Solution {
     }
 
     private static int calculateMaxHourglassSum(int[][] arr) {
-        int max = -1;
+        int max = Integer.MIN_VALUE;
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[0].length; j++) {
                 int n = getHourGlassSum(j, i, arr);
