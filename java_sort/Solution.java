@@ -1,7 +1,7 @@
 // https://www.hackerrank.com/challenges/java-sort/problem
 import java.util.*;
 
-class Student{
+class Student implements Comparable<Student> {
 	private int id;
 	private String fname;
 	private double cgpa;
@@ -20,6 +20,15 @@ class Student{
 	public double getCgpa() {
 		return cgpa;
 	}
+
+    public int compareTo(Student o) {
+        if (this.getCgpa() > o.getCgpa()) return -1;
+        else if (this.getCgpa() < o.getCgpa()) return 1;
+        else {
+            return this.getFname().compareTo(o.getFname());
+        }
+    }
+
 }
 
 //Complete the code
@@ -46,6 +55,3 @@ public class Solution
 		}
 	}
 }
-
-
-
