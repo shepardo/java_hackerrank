@@ -25,7 +25,13 @@ class Student implements Comparable<Student> {
         if (this.getCgpa() > o.getCgpa()) return -1;
         else if (this.getCgpa() < o.getCgpa()) return 1;
         else {
-            return this.getFname().compareTo(o.getFname());
+            int c = this.getFname().compareTo(o.getFname());
+            if (c == 0) {
+                if (this.getId() > o.getId()) return -1;
+                else if (this.getId() < o.getId()) return 1;
+                else return 0;
+            }
+            else return c;
         }
     }
 
@@ -49,6 +55,8 @@ public class Solution
 			
 			testCases--;
 		}
+
+        Collections.sort(studentList);
       
       	for(Student st: studentList){
 			System.out.println(st.getFname());
