@@ -1,3 +1,4 @@
+// https://www.hackerrank.com/challenges/simple-addition-varargs/problem
 import java.io.*;
 import java.lang.reflect.*;
 import java.util.*;
@@ -5,7 +6,19 @@ import java.text.*;
 import java.math.*;
 import java.util.regex.*;
 
-\Write your code here
+class Add {
+    public int add(int ...a) {
+        int total = 0;
+        String op = "";
+        for(int x : a) {
+            total += x;
+            System.out.printf("%s%d", op, x);
+            op = "+";
+        }
+        System.out.printf("=%d\n", total);
+        return total;
+    }
+}
 
 
 public class Solution {
