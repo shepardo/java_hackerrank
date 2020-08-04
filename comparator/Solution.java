@@ -1,7 +1,17 @@
+// https://www.hackerrank.com/challenges/java-comparator/problem
 import java.util.*;
 
 
 // Write your Checker class here
+class Checker implements Comparator<Player> {
+    public int compare(Player a, Player b) {
+        if (a.score < b.score) return 1;
+        else if (a.score > b.score) return -1;
+        else {
+            return String.CASE_INSENSITIVE_ORDER.compare(a.name, b.name);
+        }
+    }
+}
 
 class Player{
     String name;
