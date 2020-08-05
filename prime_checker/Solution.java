@@ -1,9 +1,33 @@
+// https://www.hackerrank.com/challenges/prime-checker/problem
 import java.io.*;
 import java.util.*;
 import java.text.*;
 import java.math.*;
 import java.util.regex.*;
 import java.lang.reflect.*;
+import static java.lang.System.in;
+
+class Prime {
+    public void checkPrime(int ...a) {
+        for (int x: a) {
+            if (isPrime(x)) {
+                System.out.printf("%d ", x);
+            }
+        }
+        System.out.println();
+    }
+
+    private boolean isPrime(int n) {
+        if(n < 2) return false;
+        if(n == 2 || n == 3) return true;
+        if(n%2 == 0 || n%3 == 0) return false;
+        int sqrtN = (int)Math.sqrt(n)+1;
+        for(int i = 6; i <= sqrtN; i += 6) {
+            if(n%(i-1) == 0 || n%(i+1) == 0) return false;
+        }
+        return true;
+    }
+}
 
 public class Solution {
 
