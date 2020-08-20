@@ -55,6 +55,9 @@ public class Solution {
             } else if (cmd.equals("OR")) {
                 BitSet op1 = (x == 1)? a : b, op2 = (y == 1)? a : b;
                 op1.or(op2);
+            } else if (cmd.equals("XOR")) {
+                BitSet op1 = (x == 1)? a : b, op2 = (y == 1)? a : b;
+                op1.xor(op2);
             }
             System.out.printf("%d %d\n", getBitSetValue(a, n), getBitSetValue(b, n));
             //System.out.printf("%s %d %d\n", cmd, x, y);
