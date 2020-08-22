@@ -1,3 +1,4 @@
+// https://www.hackerrank.com/challenges/can-you-access/problem
 import java.io.*;
 import java.lang.reflect.*;
 import java.util.*;
@@ -16,6 +17,11 @@ public class Solution {
 			Object o;// Must be used to hold the reference of the instance of the class Solution.Inner.Private
 
 			//Write your code here
+            Solution s = new Solution();
+            Solution.Inner i = new Solution.Inner();
+            Solution.Inner.Private p = i.new Private();
+            o = p;
+            System.out.println(num + " is " + p.powerof2(num));
 
 		System.out.println("An instance of class: " + o.getClass().getCanonicalName() + " has been created");
 		
