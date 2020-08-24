@@ -45,18 +45,18 @@ class Priorities {
    
    List<Student> getStudents(List<String> events) {
      a = new Student[events.size() + 1];
+     n = 0;
      return process(events);
    }
 
    private List<Student> process(List<String> events) {
-     List<Student> result = new ArrayList<>();
      for (String e: events) {
        if (e.startsWith("ENTER")) {
          String[] data = e.split(" ");
          Student st = new Student(Integer.parseInt(data[3]), data[1], Double.parseDouble(data[2]));
          insert(st);
        } else if (e.equals("SERVED")) {
-         result.add(extract());
+         extract();
        } else {
           //throw new Exception("Bad instruction: " + e);
        }
@@ -102,9 +102,10 @@ class Priorities {
      //dump();
    }
 
-   private Student extract() {
-      Student s = a[n--];
-      return s;
+   private void extract() {
+     if (n > 0 ) {
+        Student s = a[n--];
+       }
    }
 }
 
