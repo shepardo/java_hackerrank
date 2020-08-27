@@ -5,21 +5,27 @@ import java.io.InputStreamReader;
 
 //Complete the classes below
 class Flower {
+    public String whatsYourName() { return "Flower"; }
 }
 
-class Jasmine {
+class Jasmine extends Flower {
+    public String whatsYourName() { return "Jasmine"; }
 }
 
-class Lily {
+class Lily extends Flower {
+    public String whatsYourName() { return "Lily"; }
 }
 
 class Region {
+    public Flower yourNationalFlower() { return new Flower(); }
 }
 
-class WestBengal {
+class WestBengal extends Region {
+    public Jasmine yourNationalFlower() { return new Jasmine(); }
 }
 
-class AndhraPradesh {
+class AndhraPradesh extends Region {
+    public Lily yourNationalFlower() { return new Lily(); }
 }
 
 
